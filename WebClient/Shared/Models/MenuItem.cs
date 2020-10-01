@@ -15,8 +15,22 @@ public class MenuItem
             handler(this, e);
         }
     }
+    protected virtual void OnDropCallback(object e)
+    {
+        EventHandler<object> dropHandler = DropCallback;
+        if (dropHandler != null)
+        {
+            dropHandler(this, e);
+        }
+    }
     public event EventHandler<object> ClickCallback;
+    public event EventHandler<object> DropCallback;
+
     public void InvokClickCallback(object e) {
         OnClickCallback(e);
+    }
+    public void InvokDropCallback(object e)
+    {
+        OnDropCallback(e);
     }
 }

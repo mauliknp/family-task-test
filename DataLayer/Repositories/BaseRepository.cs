@@ -29,8 +29,7 @@ namespace DataLayer
             Context = context;
             Query = context.Set<TEntity>();
         }
-
-
+       
         public virtual async Task<TEntity> ByIdAsync(TIdentity id, CancellationToken cancellationToken = default)
         {
             var result = await Context.FindAsync<TEntity>(new object[] { id }, cancellationToken);
@@ -43,11 +42,20 @@ namespace DataLayer
             return await Query.SingleOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<IEnumerable<TEntity>> ToListAsync(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<TEntity>> ToListAsync(string  toinclude="",CancellationToken cancellationToken = default)
         {
-            return await
-                Query.ToListAsync(cancellationToken);
+            if (toinclude != string.Empty)
+            {
+                return await
+                  Query.Include(toinclude).ToListAsync(cancellationToken);
+            }
+            else
+            {
+                return await
+                    Query.ToListAsync(cancellationToken);
+            }
         }
+
       
         public TRepository NoTrack()
         {

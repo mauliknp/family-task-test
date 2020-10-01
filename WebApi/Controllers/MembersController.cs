@@ -54,13 +54,13 @@ namespace WebApi.Controllers
             catch (NotFoundException<Guid>)
             {
                 return NotFound();
-            }            
+            }
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(GetAllMembersQueryResult), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
-        {            
+        {
             var result = await _memberService.GetAllMembersQueryHandler();
 
             return Ok(result);

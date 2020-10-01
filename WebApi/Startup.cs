@@ -28,9 +28,9 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddSupportingServices(Configuration);
             
+            services.AddSupportingServices(Configuration);
+        
             services.AddDatalayer();
             services.AddServiceLayer();
         }
@@ -42,14 +42,14 @@ namespace WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Family Task API");
             });
 
-            app.UseCors("Open");
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
