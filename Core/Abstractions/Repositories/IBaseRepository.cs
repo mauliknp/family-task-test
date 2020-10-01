@@ -29,7 +29,7 @@ namespace Core.Abstractions.Repositories
         /// Returns a list of <see cref="TEntity"/> based on the current query.
         /// </summary>
         /// <returns><see cref="TEntity"/></returns>
-        Task<IEnumerable<TEntity>> ToListAsync(CancellationToken cancellationToken = default);
+        Task<IEnumerable<TEntity>> ToListAsync(string toinclude="", CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Make the query Non Tracking
