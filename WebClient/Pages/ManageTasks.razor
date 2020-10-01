@@ -20,8 +20,9 @@
                             <DataAnnotationsValidator />
                             <Field class="col-9 p-0 custom-input">
                                 <TextEdit @bind-Text="@task.Subject" Placeholder="Enter New Task" />
-                                <ValidationMessage For="@(() => task.Subject)" />
+
                             </Field>
+                            <ValidationMessage For="@(() => task.Subject)" />
                             <div class="col-3 p-0 text-right">
                                 <Button Type="ButtonType.Submit" PreventDefaultOnSubmit="true" class="add-btn px-4">Add</Button>
                             </div>
